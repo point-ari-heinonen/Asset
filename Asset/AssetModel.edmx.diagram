@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="bb5a9dcaf8fd4994bd5630b9868658bb" Name="Diagram1">
         <EntityTypeShape EntityType="AssetModel.AssetLocation" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetModel.AssetLocation1" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetModel.AssetLocation1" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="AssetModel.Asset" Width="1.5" PointX="5.125" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="AssetModel.FK_AssetLocations_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="AssetModel.FK_AssetLocation_Assets" ManuallyRouted="false" />
