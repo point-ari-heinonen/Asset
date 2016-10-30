@@ -17,6 +17,11 @@ namespace Asset.Controllers
             return View();
         }
 
+        public ActionResult Test()
+        {
+            return View();
+        }
+
         // GET: Asset/Details/5
         public ActionResult Details(int id)
         {
