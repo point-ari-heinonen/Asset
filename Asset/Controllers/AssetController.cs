@@ -74,7 +74,7 @@ namespace Asset.Controllers
             return Json(result);
         }
 
-        // POST: Asset/Create
+        // POST: Asset/Create 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
