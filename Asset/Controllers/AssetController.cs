@@ -74,35 +74,6 @@ namespace Asset.Controllers
             return Json(result);
         }
 
-        //**********************************************************************************************
-        public ActionResult GetAssetByLocation(string AssetLocation)
-        {
-            int AssetLocationInt; 
-            AssetLocationInt = 1;
-            //AssetLocationInt = int.Parse(AssetLocation);
-
-            AssetEntities entities = new AssetEntities();
-            List<AssetLocation1> Assets = (from a in entities.AssetLocations1
-                                           where a.LocationId == AssetLocationInt
-                                   select a).ToList();
-            entities.Dispose();
-
-
-            List<GetLocationModel> result = new List<GetLocationModel>();
-            foreach (AssetLocation1 OneAsset in Assets)
-            {
-                GetLocationModel data = new GetLocationModel();
-                data.LocationCode = OneAsset.LocationId.ToString();
-                data.AssetCode = OneAsset.AssetId.ToString();
-                result.Add(data);
-            }
-
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-
-
-
         // POST: Asset/Create 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
