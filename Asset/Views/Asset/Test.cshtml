@@ -9,6 +9,14 @@
             initAssetAssignment();
         })
     </script>
+
+<script>
+        $(function () {
+            initLocation();
+        })
+</script>
+
+
     }
 <h2>Test Json Interface</h2>
 <p>
@@ -19,4 +27,23 @@
 </p>
 <button id="AssignAssetButton">
     Assign Asset
+</button>
+
+
+<p>
+    <input id="NewLocationCode" type="text" placeholder="Add new location code" required />
+</p>
+
+<p>
+    <input id="NewLocationAddress" type="text" placeholder="Add new location address" required />
+</p>
+
+
+<p>
+    <input id="NewLocationName" type="text" placeholder="Add new location name" required />
+</p>
+
+
+<button id="LocationButton">
+    Add new location
 </button>

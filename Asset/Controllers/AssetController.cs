@@ -34,6 +34,39 @@ namespace Asset.Controllers
             return View();
         }
 
+        public JsonResult Location()
+        {
+            string json = Request.InputStream.ReadToEnd();
+            LocationModel inputData = JsonConvert.DeserializeObject<LocationModel>(json);
+            bool success = false;
+            string error = "";
+            AssetEntities entities = new AssetEntities();
+            try
+            {
+                AssetLocation newEntry = new AssetLocation();
+                newEntry.Address = inputData.LocationAddress;
+                newEntry.Code = inputData.LocationCode;
+                newEntry.Name = inputData.LocationName;
+                entities.AssetLocations.Add(newEntry);
+                entities.SaveChanges();
+                success = true;
+
+            }
+
+            catch (Exception ex)
+            {
+                error = ex.GetType().Name + ": " + ex.Message;
+            }
+            finally
+            {
+                entities.Dispose();
+            }
+            var result = new { success = success, error = error };
+
+            return Json(result);
+        }
+        
+
         public JsonResult AssignLocation()
         {
             string json = Request.InputStream.ReadToEnd();

@@ -4,6 +4,11 @@ var AssignLocationModel = (function () {
     }
     return AssignLocationModel;
 })();
+var LocationModel = (function () {
+    function LocationModel() {
+    }
+    return LocationModel;
+})();
 function initAssetAssignment() {
     $("#AssignAssetButton").click(function () {
         var locationCode = $("#LocationCode").val();
@@ -15,6 +20,33 @@ function initAssetAssignment() {
         $.ajax({
             type: "POST",
             url: "/Asset/AssignLocation",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.success == true) {
+                    alert("Asset successfully assigned.");
+                }
+                else {
+                    alert("There was an error: " + data.error);
+                }
+            },
+            dataType: "json"
+        });
+    });
+}
+function initLocation() {
+    $("#LocationButton").click(function () {
+        var newLocationCode = $("#NewLocationCode").val();
+        var newLocationAddress = $("#NewLocationAddress").val();
+        var newLocationName = $("#NewLocationName").val();
+        alert(newLocationCode + newLocationName + newLocationAddress);
+        var data = new LocationModel();
+        data.LocationAddress = newLocationAddress;
+        data.LocationCode = newLocationCode;
+        data.LocationName = newLocationName;
+        $.ajax({
+            type: "POST",
+            url: "/Asset/Location",
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (data) {
