@@ -1,4 +1,4 @@
-﻿using Asset.Models;
+﻿
 using Asset.Utilities;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using Asset.Models;
 
 namespace Asset.Controllers
 {
@@ -99,7 +100,7 @@ namespace Asset.Controllers
         
         public ActionResult List()
         {
-            List<LocatedAssetsViewModel> model = new List<LocatedAssetsViewModel>();
+            List<AssetinNakymaViewModel> model = new List<AssetinNakymaViewModel>();
 
             AssetEntities entities = new AssetEntities();
             try
@@ -110,7 +111,7 @@ namespace Asset.Controllers
                 CultureInfo fiFi = new CultureInfo("fi-FI");
                 foreach (AssetLocation1 asset in assets)
                 {
-                    LocatedAssetsViewModel view = new LocatedAssetsViewModel();
+                    AssetinNakymaViewModel view = new AssetinNakymaViewModel();
                     view.Id = asset.Id;
                     view.LocationCode = asset.AssetLocation.Code;
                     view.LocationName = asset.AssetLocation.Name;
