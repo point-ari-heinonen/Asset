@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Asset.Models
 {
-    public class LocatedAssetsViewModel
+    public class AssetinNakymaViewModel
     {
 
         public int Id { get; set; }
