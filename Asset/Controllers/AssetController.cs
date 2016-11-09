@@ -3,6 +3,7 @@ using Asset.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,17 +23,6 @@ namespace Asset.Controllers
             return View();
         }
 
-        // GET: Asset/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Asset/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         public JsonResult Location()
         {
@@ -65,7 +55,7 @@ namespace Asset.Controllers
 
             return Json(result);
         }
-        
+
 
         public JsonResult AssignLocation()
         {
@@ -107,64 +97,38 @@ namespace Asset.Controllers
             return Json(result);
         }
 
-        // POST: Asset/Create 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        
+        public ActionResult List()
         {
+            List<LocatedAssetsViewModel> model = new List<LocatedAssetsViewModel>();
+
+            AssetEntities entities = new AssetEntities();
             try
             {
-                // TODO: Add insert logic here
+                List<AssetLocation1> assets = entities.AssetLocations1.ToList();
 
-                return RedirectToAction("Index");
+                // muodostetaan näkymämalli tietokannan rivien pohjalta
+                CultureInfo fiFi = new CultureInfo("fi-FI");
+                foreach (AssetLocation1 asset in assets)
+                {
+                    LocatedAssetsViewModel view = new LocatedAssetsViewModel();
+                    view.Id = asset.Id;
+                    view.LocationCode = asset.AssetLocation.Code;
+                    view.LocationName = asset.AssetLocation.Name;
+                    view.AssetCode = asset.Asset.Code;
+                    view.AssetName = asset.Asset.Type + ": " + asset.Asset.Model;
+                    view.LastSeen = asset.LastSeen.Value.ToString(fiFi);
+
+                    model.Add(view);
+                }
             }
-            catch
+            finally
             {
-                return View();
+                entities.Dispose();
             }
-        }
 
-        // GET: Asset/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+            return View(model);
 
-        // POST: Asset/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Asset/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Asset/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        } 
     }
 }

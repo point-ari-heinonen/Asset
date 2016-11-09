@@ -28,5 +28,6 @@ namespace Asset
         public virtual DbSet<AssetLocation> AssetLocations { get; set; }
         public virtual DbSet<AssetLocation1> AssetLocations1 { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
+
     }
 }
